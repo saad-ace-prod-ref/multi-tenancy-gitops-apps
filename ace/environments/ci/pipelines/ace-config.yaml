@@ -6,6 +6,7 @@ spec:
   params:
     - name: is-config-repo-url
       type: string
+      description: repo url in git
 
     - name: is-infra-repo-url
       type: string
