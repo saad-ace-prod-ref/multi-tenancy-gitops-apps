@@ -18,7 +18,7 @@ spec:
 
     - name: gitops-apps-repo-full-name
       type: string
-      description: "Repo name of GitOps repository, in github.com, ex: ace-prod-ref/multi-tenancy-gitops-apps.git"
+      description: "Repo name of GitOps repository, in github.com, ex: ace-prod-ref/multi-tenancy-gitops-apps"
 
     - name: github-pr-title
       type: string
