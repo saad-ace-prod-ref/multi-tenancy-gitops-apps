@@ -13,11 +13,6 @@ spec:
     - name: git-ops-repo-url
       type: string
 
-    - name: git-ops-destination-directory
-      type: string
-    - name: git-ops-kustomization-path
-      type: string
-
     - name: gitops-apps-repo-full-name
       type: string
 
