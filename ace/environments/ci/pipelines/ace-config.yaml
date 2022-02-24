@@ -6,26 +6,32 @@ spec:
   params:
     - name: is-config-repo-url
       type: string
-      description: repo url in git
+      description: "SSH url of Configuration repository, ex: git@github.com:ace-prod-ref/ace-config.git"
 
     - name: is-infra-repo-url
       type: string
+      description: "SSH url of Infrastructure repository, ex: git@github.com:ace-prod-ref/ace-infra.git"
 
     - name: git-ops-repo-url
       type: string
+      description: "SSH url of GitOps repository, ex: git@github.com:saad-ace-prod-ref/multi-tenancy-gitops-apps.git"
 
     - name: gitops-apps-repo-full-name
       type: string
+      description: "Repo name of GitOps repository, in github.com, ex: ace-prod-ref/multi-tenancy-gitops-apps.git"
 
     - name: github-pr-title
       type: string
       default: "Changes by Pipeline run: $(context.pipelineRun.name)"
+      description: "Title of pull request"
     - name: github-pr-body
       type: string
       default: "Changes by Pipeline run: $(context.pipelineRun.name)"
+      description: "Body of pull request"
     - name: github-pr-token-secret-name
       type: string
       default: cicd-acme
+      description: "User access token for CICD bot user"
 
   workspaces:
     - name: shared-workspace
