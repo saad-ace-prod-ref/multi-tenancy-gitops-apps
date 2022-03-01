@@ -20,6 +20,7 @@ spec:
     - name: previous-is-genenration
     - name: previous-deployment-revision
     - name: endpoint-path
+    - name: is-configurations
   steps:
     - name: parse-source-properties
       image: mikefarah/yq:4.7.1
@@ -59,6 +60,9 @@ spec:
 
         resolve_prop '.mq.queueName' $(results.mq-queue-name.path)
         resolve_prop '.mq.endPointPolicyFile' $(results.mq-end-point-policy-file.path)
+
+        resolve_props '.integrationServer.configurations.*' $(results.is-configurations.path)
+
 
     - name: resolve-ocp-properties
       image: quay.io/openshift/origin-cli:latest
