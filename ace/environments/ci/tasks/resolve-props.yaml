@@ -6,7 +6,7 @@ spec:
   params:
     - name: is-source-directory
   results:
-    - name: is-application-names
+    - name: is-application-name
     - name: release-name
     - name: is-configuration-keystore
     - name: is-configuration-truststore
@@ -21,6 +21,10 @@ spec:
     - name: previous-deployment-revision
     - name: endpoint-path
     - name: is-configurations
+    - name: is-license
+    - name: is-license-use
+    - name: is-service-endpoint-type
+    - name: is-version
   steps:
     - name: parse-source-properties
       image: mikefarah/yq:4.7.1
@@ -48,7 +52,7 @@ spec:
           echo -n `yq e "$exp // \"\" " $properties_yaml_path` > $result_path
         }
 
-        resolve_props '.integrationServer.applicationNames' $(results.is-application-names.path)
+        resolve_prop '.integrationServer.applicationName' $(results.is-application-name.path)
         resolve_prop '.integrationServer.releaseName' $(results.release-name.path)
         resolve_prop '.integrationServer.endpoint-path' $(results.endpoint-path.path)
         resolve_props '.integrationServer.configurations.keystore' $(results.is-configuration-keystore.path)
@@ -63,6 +67,10 @@ spec:
 
         resolve_props '.integrationServer.configurations.*' $(results.is-configurations.path)
 
+        resolve_prop '.integrationServer.license.license' $(results.is-license.path)
+        resolve_prop '.integrationServer.license.use' $(results.is-license-use.path)
+        resolve_prop '.integrationServer.service.endpointType' $(results.is-service-endpoint-type.path)
+        resolve_prop '.integrationServer.version' $(results.is-version.path)
 
     - name: resolve-ocp-properties
       image: quay.io/openshift/origin-cli:latest
