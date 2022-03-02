@@ -1,29 +1,26 @@
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name:
+  name: create-customer-details-rest
 spec:
   designerFlowsOperationMode: disabled
   license:
     accept: true
-    license:
-    use:
+    license: L-KSBM-C37J2R
+    use: CloudPakForIntegrationNonProduction
   replicas: 1
   router:
     timeout: 120s
   service:
-    endpointType:
+    endpointType: http
   useCommonServices: true
-  version:
+  version: 12.0.1.0-r3
   adminServerSecure: true
   pod:
     containers:
       runtime:
-        image: image-registry.openshift-image-registry.svc:5000/ci/create-customer-details-rest:eb2bb6fe6fd2143b0927397bc6861ad10a8e579d
+        image: image-registry.openshift-image-registry.svc:5000/ci/create-customer-details-rest:325131c99fab760e0f1bc4f5612cd0f4ac675e13
         imagePullPolicy: Always
   configurations:
-    - ibm-rest-dbparms.txt
-    - ibm-rest-serverconf.yaml
-    - ibm-rest-policy
-    - ibm-ace-server.jks
-    - ibm-ca.jks
+    - create-customer-serverconf.yaml
+    - create-customer-policy
