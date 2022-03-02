@@ -7,7 +7,7 @@ spec:
     - name: is-source-directory
   results:
     - name: is-application-name
-    - name: release-name
+    - name: is-release-name
     - name: is-configuration-keystore
     - name: is-configuration-truststore
     - name: is-configuration-setdbparms
@@ -53,7 +53,7 @@ spec:
         }
 
         resolve_prop '.integrationServer.applicationName' $(results.is-application-name.path)
-        resolve_prop '.integrationServer.releaseName' $(results.release-name.path)
+        resolve_prop '.integrationServer.releaseName' $(results.is-release-name.path)
         resolve_prop '.integrationServer.endpoint-path' $(results.endpoint-path.path)
         resolve_props '.integrationServer.configurations.keystore' $(results.is-configuration-keystore.path)
         resolve_props '.integrationServer.configurations.truststore' $(results.is-configuration-truststore.path)
