@@ -1,7 +1,7 @@
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name:
+  name: create-customer-details-rest
 spec:
   designerFlowsOperationMode: disabled
   license:
