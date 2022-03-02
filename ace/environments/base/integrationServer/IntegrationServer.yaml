@@ -1,0 +1,29 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name:
+spec:
+  designerFlowsOperationMode: disabled
+  license:
+    accept: true
+    license:
+    use:
+  replicas: 1
+  router:
+    timeout: 120s
+  service:
+    endpointType:
+  useCommonServices: true
+  version:
+  adminServerSecure: true
+  pod:
+    containers:
+      runtime:
+        image: image-registry.openshift-image-registry.svc:5000/ci/create-customer-details-rest:eb2bb6fe6fd2143b0927397bc6861ad10a8e579d
+        imagePullPolicy: Always
+  configurations:
+    - ibm-rest-dbparms.txt
+    - ibm-rest-serverconf.yaml
+    - ibm-rest-policy
+    - ibm-ace-server.jks
+    - ibm-ca.jks
