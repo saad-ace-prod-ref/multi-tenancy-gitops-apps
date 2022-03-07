@@ -16,11 +16,6 @@ spec:
       type: string
       description: "SSH url of GitOps repository, ex: git@github.com:ace-prod-ref/multi-tenancy-gitops-apps.git"
 
-    - name: ace-base-image
-      type: string
-      default: icr.io/appc-dev/ace-server:12.0.2.0-r2-20211115-123200-amd64
-      description: "Base image for App Connect Interprise."
-
     - name: gitops-apps-repo-full-name
       type: string
       description: "Repo name of GitOps repository, in github.com, ex: ace-prod-ref/multi-tenancy-gitops-apps"
@@ -126,7 +121,7 @@ spec:
     - name: build-is-image
       params:
         - name: BUILD_EXTRA_ARGS
-          value: --build-arg BASE=$(params.ace-base-image)
+          value: --build-arg BASE=$(tasks.resolve-props.results.is-base-image)
         - name: TLSVERIFY
           value: "false"
         - name: IMAGE
