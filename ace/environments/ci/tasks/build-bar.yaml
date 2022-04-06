@@ -20,8 +20,6 @@ spec:
       script: |
         #!/usr/bin/env bash
 
-        set -x
-
         rm -rf $(workspaces.workspace.path)/bars
         mkdir -p $(workspaces.workspace.path)/bars
         rm -rf $(workspaces.workspace.path)/source
@@ -32,7 +30,7 @@ spec:
 
         project_options=""
         for project in $(params.is-project) ; do
-          project_options="-project ${project} ${project_options}"
+          project_options="--project ${project} ${project_options}"
         done
 
         echo ${project_options}
