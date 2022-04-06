@@ -33,8 +33,9 @@ spec:
           project_options="--project ${project} ${project_options}"
         done
 
-        echo ${project_options}
-
-        # ibmint package --input-path $(workspaces.workspace.path)/source --output-bar-file $(workspaces.workspace.path)/bars/$(params.is-application-name).bar
+        echo ibmint package \
+          --input-path $(workspaces.workspace.path)/source \
+          ${project_options} \
+          --output-bar-file $(workspaces.workspace.path)/bars/$(params.is-application-name).bar
   workspaces:
     - name: workspace
