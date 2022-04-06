@@ -61,39 +61,39 @@ spec:
         - name: ssh-directory
           workspace: ace-source-repo-secret
 
-    # - name: clone-is-infra-repo
-    #   params:
-    #     - name: url
-    #       value: $(params.is-infra-repo-url)
-    #     - name: subdirectory
-    #       value: is-infra
-    #     - name: deleteExisting
-    #       value: "true"
-    #   taskRef:
-    #     kind: ClusterTask
-    #     name: git-clone
-    #   workspaces:
-    #     - name: output
-    #       workspace: shared-workspace
-    #     - name: ssh-directory
-    #       workspace: ace-infra-repo-secret
+    - name: clone-is-infra-repo
+      params:
+        - name: url
+          value: $(params.is-infra-repo-url)
+        - name: subdirectory
+          value: is-infra
+        - name: deleteExisting
+          value: "true"
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+        - name: ssh-directory
+          workspace: ace-infra-repo-secret
 
-    # - name: clone-gitops-repo
-    #   params:
-    #     - name: url
-    #       value: $(params.git-ops-repo-url)
-    #     - name: subdirectory
-    #       value: gitops-repo
-    #     - name: deleteExisting
-    #       value: "true"
-    #   taskRef:
-    #     kind: ClusterTask
-    #     name: git-clone
-    #   workspaces:
-    #     - name: output
-    #       workspace: shared-workspace
-    #     - name: ssh-directory
-    #       workspace: gitops-repo-secret
+    - name: clone-gitops-repo
+      params:
+        - name: url
+          value: $(params.git-ops-repo-url)
+        - name: subdirectory
+          value: gitops-repo
+        - name: deleteExisting
+          value: "true"
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+        - name: ssh-directory
+          workspace: gitops-repo-secret
 
     - name: resolve-props
       params:
@@ -108,20 +108,22 @@ spec:
       - name: input
         workspace: shared-workspace
 
-    # - name: build-bar
-    #   params:
-    #   - name: is-source-directory
-    #     value: is-source
-    #   - name: is-application-name
-    #     value: $(tasks.resolve-props.results.is-application-name)
-    #   runAfter:
-    #     - resolve-props
-    #   taskRef:
-    #     kind: Task
-    #     name: build-bar
-    #   workspaces:
-    #   - name: workspace
-    #     workspace: shared-workspace
+    - name: build-bar
+      params:
+      - name: is-source-directory
+        value: is-source
+      - name: is-application-name
+        value: $(tasks.resolve-props.results.is-application-name)
+      - name: is-project
+        value: $(tasks.resolve-props.results.is-project)
+      runAfter:
+        - resolve-props
+      taskRef:
+        kind: Task
+        name: build-bar
+      workspaces:
+      - name: workspace
+        workspace: shared-workspace
 
     # - name: build-is-image
     #   params:
