@@ -20,7 +20,7 @@ spec:
       script: |
         #!/usr/bin/env bash
 
-        set +x
+        set -x
 
         rm -rf $(workspaces.workspace.path)/bars
         mkdir -p $(workspaces.workspace.path)/bars
