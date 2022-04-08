@@ -3,4 +3,5 @@ kind: Issuer
 metadata:
  name: prod-ref-ss-ca
 spec:
-  secret: prod-ref-ss-tls-ca-key-pair
+  ca:
+    secretName: openshift-gitops-cntk-tls
