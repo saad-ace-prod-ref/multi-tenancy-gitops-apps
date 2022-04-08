@@ -1,0 +1,24 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+ name: prod-ref-ss
+spec:
+ secretName: prod-ref-ss-tls-ca-key-pair
+ isCA: true
+ issuerRef:
+   name: prod-ref-ss
+   kind: Issuer
+ commonName: appdomain.cloud
+ subject:
+  countries:
+    - UK
+  provinces:
+    - London
+  localities:
+    - London
+  organizations:
+    - IBM
+  organizationalUnits:
+    - Assets and Architecture
+ dnsNames:
+ - "${INGRESS_WILDCARD}"
