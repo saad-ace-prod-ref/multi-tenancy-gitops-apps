@@ -3,7 +3,7 @@ resources:
 # - configmaps/gitops-repo-configmap.yaml
 # - eventlisteners/ace-bar-event-listener.yaml
 - certificate/prod-ref-ss-ca.yaml
-- certificate/prod-ref-devops.yaml
+# - certificate/prod-ref-devops.yaml
 - imagestreams/sh-tools.yaml
 - issuer/prod-ref-ss.yaml
 - issuer/prod-ref-ss-ca.yaml
