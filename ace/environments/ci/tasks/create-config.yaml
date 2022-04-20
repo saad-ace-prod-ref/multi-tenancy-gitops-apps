@@ -183,7 +183,6 @@ spec:
             config=${relative_path_to_item} yq e -i -P '.resources = (.resources // []) + env(config)' \
               ${KUSTOMIZATION_PATH}
 
-            prettyfy ${KUSTOMIZATION_PATH}
           fi
         }
 
@@ -225,6 +224,8 @@ spec:
           echo "No changes"
           exit 0
         fi
+
+        git config --global --add safe.directory $(workspaces.workspace.path)/$(params.repo-directory)
 
         git checkout -b ${BRANCH_NAME}
         git add .
