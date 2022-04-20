@@ -132,7 +132,7 @@ spec:
         git config --global user.email "${GIT_USER_EMAIL}"
         git config --global user.name "${GIT_USER_NAME}"
 
-        git config --global --add safe.directory $(workspaces.workspace.path)/$(params.repo-directory)
+        git config --global --add safe.directory $(workspaces.input.path)/$(params.repo-directory)
 
         if [[ $(git status -s | wc -l) -eq 0 ]]; then
           echo "No changes"
