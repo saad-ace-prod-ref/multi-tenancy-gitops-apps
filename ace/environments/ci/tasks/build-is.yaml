@@ -122,7 +122,7 @@ spec:
       image: bitnami/git
       script: |
         #!/usr/bin/env bash
-        set -eu
+        set -eux
 
         cp -R "${WORKSPACE_SSH_DIRECTORY_PATH}" "${PARAM_USER_HOME}"/.ssh
         chmod 700 "${PARAM_USER_HOME}"/.ssh
