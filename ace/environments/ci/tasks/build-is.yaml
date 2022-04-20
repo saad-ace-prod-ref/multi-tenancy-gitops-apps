@@ -96,18 +96,10 @@ spec:
             ${KUSTOMIZATION_PATH})
 
           if [[ -z $contains ]]; then
-            config=${relative_path_to_item} yq e -i '.resources = (.resources // []) + env(config)' \
+            config=${relative_path_to_item} yq e -i -P '.resources = (.resources // []) + env(config)' \
               ${KUSTOMIZATION_PATH}
 
-            prettyfy ${KUSTOMIZATION_PATH}
           fi
-        }
-
-        function prettyfy() {
-          local file=$1
-
-          yq e --prettyPrint $file >/tmp/temp.yaml
-          mv /tmp/temp.yaml $file
         }
 
         if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
@@ -139,6 +131,8 @@ spec:
         # Setting up the config for the git.
         git config --global user.email "${GIT_USER_EMAIL}"
         git config --global user.name "${GIT_USER_NAME}"
+
+        git config --global --add safe.directory $(workspaces.workspace.path)/$(params.repo-directory)
 
         if [[ $(git status -s | wc -l) -eq 0 ]]; then
           echo "No changes"
